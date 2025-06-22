@@ -1,4 +1,6 @@
 ---
+import "../style/global.css"
+
 const pageTitle = "关于我";
 
 const identity = {
@@ -9,6 +11,14 @@ const identity = {
 };
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillcolor = "navy";
+const fontweight = "bold";
+const textcase = "uppercase";
 ---
 
 <html lang="en">
@@ -18,6 +28,17 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+        <style define:vars={{skillcolor, fontweight, textcase}}>
+            h1 {
+                color: purple;
+                font-size: 4rem;
+            }
+            .skill {
+                color: var(--skillcolor);
+                font-weight: var(--fontweight);
+                text-transform: var(--textcase);
+            }
+        </style>
 	</head>
 	<body>
         <a href="/">首页</a>
@@ -38,7 +59,13 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
         </ul>
         <p>我的技能是：</p>
         <ul>
-            {skills.map((skill) => <li>{skill}</li>)}
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
         </ul>
+
+        {happy && <p>我非常乐意学习 Astro！</p>}
+
+        {finished && <p>我完成了这节教程！</p>}
+
+        {goal === 3 ? <p>我的目标是在三天内完成。</p> : <p>我的目标不是 3 天。</p>}
 	</body>
 </html>
